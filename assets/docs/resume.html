@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Somalaraju Harsha Vardhan Raju - AI Engineer Resume</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #ffffff;
+      --fg: #0f172a;
+      --muted: #475569;
+      --accent: #2563eb;
+      --border: #e2e8f0;
+      --subtle: #f8fafc;
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      color: var(--fg);
+      background: #f1f5f9;
+      margin: 0;
+      padding: 32px 16px;
+      line-height: 1.5;
+    }
+    .page {
+      max-width: 860px;
+      margin: 0 auto;
+      background: var(--bg);
+      padding: 48px;
+      border-radius: 8px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    }
+    .actions-bar {
+      max-width: 860px;
+      margin: 0 auto 20px auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--accent);
+      color: #fff;
+      padding: 10px 18px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      border: none;
+      cursor: pointer;
+    }
+    .btn-secondary {
+      background: #e2e8f0;
+      color: #0f172a;
+    }
+    header {
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 20px;
+      margin-bottom: 24px;
+    }
+    h1 {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 2rem;
+      margin: 0 0 6px 0;
+      color: #0f172a;
+    }
+    .title {
+      font-size: 1.15rem;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+    .contact-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      font-size: 0.88rem;
+      color: var(--muted);
+      font-family: 'IBM Plex Mono', monospace;
+    }
+    .contact-links a { color: inherit; text-decoration: none; }
+    .contact-links a:hover { color: var(--accent); }
+    section { margin-bottom: 24px; }
+    h2 {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 1.15rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      border-bottom: 1.5px solid var(--border);
+      padding-bottom: 6px;
+      margin: 0 0 14px 0;
+      color: #1e293b;
+    }
+    .summary { font-size: 0.95rem; color: #334155; }
+    .item { margin-bottom: 16px; }
+    .item-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 4px;
+    }
+    .item-title { font-weight: 600; font-size: 1rem; color: #0f172a; }
+    .item-meta { font-family: 'IBM Plex Mono', monospace; font-size: 0.82rem; color: var(--muted); }
+    .item-org { color: var(--accent); font-weight: 500; font-size: 0.92rem; margin-bottom: 6px; }
+    ul { margin: 6px 0 0 18px; padding: 0; }
+    li { margin-bottom: 4px; font-size: 0.92rem; color: #334155; }
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+    .skill-cat {
+      background: var(--subtle);
+      padding: 10px 14px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+    }
+    .skill-cat strong { display: block; font-size: 0.88rem; margin-bottom: 4px; color: #0f172a; }
+    .skill-cat span { font-size: 0.85rem; color: var(--muted); }
+    @media print {
+      body { background: #fff; padding: 0; }
+      .page { box-shadow: none; padding: 0; max-width: 100%; }
+      .actions-bar { display: none; }
+    }
+    @media (max-width: 640px) {
+      .page { padding: 24px; }
+      .item-header { flex-direction: column; }
+      .skills-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="actions-bar">
+    <a href="../../index.html" class="btn btn-secondary">&larr; Back to Portfolio</a>
+    <button class="btn" onclick="window.print()">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+      Print / Save as PDF
+    </button>
+  </div>
+
+  <div class="page">
+    <header>
+      <h1>Somalaraju Harsha Vardhan Raju</h1>
+      <div class="title">AI Engineer | Generative AI Engineer</div>
+      <div class="contact-links">
+        <span>Location: India</span>
+        <a href="https://www.linkedin.com/in/somalaraju-harsha-vardhan-raju-9624a8261/" target="_blank">LinkedIn Profile</a>
+        <a href="https://github.com/SomalarajuHarshaVardhanRaju" target="_blank">GitHub: SomalarajuHarshaVardhanRaju</a>
+      </div>
+    </header>
+
+    <section>
+      <h2>Professional Summary</h2>
+      <p class="summary">
+        AI Engineer specializing in Generative AI, Large Language Models, RAG architectures, AI Agents, and enterprise AI applications. Passionate about building scalable, intelligent solutions using Python, Azure OpenAI, LangChain, LangGraph, and modern AI technologies. Experienced in building end-to-end ML and LLM pipelines, vector databases, and enterprise data solutions.
+      </p>
+    </section>
+
+    <section>
+      <h2>Technical Skills</h2>
+      <div class="skills-grid">
+        <div class="skill-cat">
+          <strong>Generative AI &amp; LLM:</strong>
+          <span>Generative AI, LLMs, Prompt Engineering, RAG Pipelines, AI Agents, MCP, Agentic AI</span>
+        </div>
+        <div class="skill-cat">
+          <strong>Frameworks &amp; APIs:</strong>
+          <span>LangChain, LangGraph, CrewAI, FastAPI, REST APIs, PyTorch</span>
+        </div>
+        <div class="skill-cat">
+          <strong>Vector Databases &amp; Search:</strong>
+          <span>FAISS, ChromaDB, Azure AI Search</span>
+        </div>
+        <div class="skill-cat">
+          <strong>Cloud &amp; Data Engineering:</strong>
+          <span>Microsoft Azure, Azure OpenAI, Azure Data Factory, Azure Databricks, Microsoft Fabric, PySpark</span>
+        </div>
+        <div class="skill-cat">
+          <strong>Programming:</strong>
+          <span>Python, SQL, JavaScript</span>
+        </div>
+        <div class="skill-cat">
+          <strong>Machine Learning:</strong>
+          <span>Scikit-learn, NLP, Pandas, NumPy</span>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Professional Experience</h2>
+      <div class="item">
+        <div class="item-header">
+          <span class="item-title">Artificial Intelligence Intern</span>
+          <span class="item-meta">Dec 2025 &ndash; Mar 2026 | Bengaluru, India</span>
+        </div>
+        <div class="item-org">SKILLRAACE</div>
+        <ul>
+          <li>Engineered supervised and unsupervised ML models in Python across full data lifecycles from ingestion to production evaluation.</li>
+          <li>Constructed robust data preprocessing and feature engineering pipelines improving model accuracy and inference reliability on enterprise datasets.</li>
+          <li>Developed RAG pipelines integrating vector search and LLMs for document intelligence and automated claim analysis.</li>
+          <li>Packaged models into high-performance FastAPI microservices with structured validation.</li>
+        </ul>
+      </div>
+
+      <div class="item">
+        <div class="item-header">
+          <span class="item-title">Campus Ambassador</span>
+          <span class="item-meta">Jan 2026 &ndash; Jun 2026 | Puttur, Andhra Pradesh</span>
+        </div>
+        <div class="item-org">GeeksforGeeks</div>
+        <ul>
+          <li>Spearheaded coding initiatives, algorithmic workshops, and competitive programming contests on campus.</li>
+          <li>Mentored peers on Data Structures, Algorithms, and technical interview preparation.</li>
+        </ul>
+      </div>
+
+      <div class="item">
+        <div class="item-header">
+          <span class="item-title">Python Developer</span>
+          <span class="item-meta">Aug 2024 &ndash; Oct 2024 | Remote</span>
+        </div>
+        <div class="item-org">OctaNet Services Pvt Ltd.</div>
+        <ul>
+          <li>Implemented Python backend automation scripts and REST API endpoints.</li>
+          <li>Handled data transformations, file automation, and modular software testing.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <h2>Featured AI Projects</h2>
+      <div class="item">
+        <div class="item-header">
+          <span class="item-title">Intelligent Insurance Knowledge &amp; Claims Assistant</span>
+          <span class="item-meta">Azure OpenAI, LangChain, Azure AI Search, FAISS, FastAPI</span>
+        </div>
+        <ul>
+          <li>Engineered an enterprise RAG assistant retrieving policy documentation and automating multi-modal claims assessment with verified citation citations.</li>
+        </ul>
+      </div>
+      <div class="item">
+        <div class="item-header">
+          <span class="item-title">Healthcare Generative AI Clinical Decision Support</span>
+          <span class="item-meta">Python, LangChain, ChromaDB, FastAPI</span>
+        </div>
+        <ul>
+          <li>Built a conversational clinical intelligence platform assisting practitioners with medical literature retrieval and clinical summarization with hallucination checks.</li>
+        </ul>
+      </div>
+      <div class="item">
+        <div class="item-header">
+          <span class="item-title">FinSight &ndash; AI-Powered Financial Statement Analysis</span>
+          <span class="item-meta">LangGraph, Azure OpenAI, LlamaParse, Pandas, PySpark</span>
+        </div>
+        <ul>
+          <li>Developed autonomous financial document intelligence analyzing 10-K filings, earnings transcripts, and balance sheet anomalies.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <h2>Certifications &amp; Achievements</h2>
+      <ul>
+        <li><strong>Microsoft Certified: Fabric Data Engineer Associate</strong> &ndash; Microsoft</li>
+        <li><strong>Google Cloud Skills Boost:</strong> Public Profile &amp; Badges in GenAI and Cloud Computing (<a href="https://www.skills.google/public_profiles/1b0c8002-e364-4b79-a100-64e649437c3b" target="_blank">Verify</a>)</li>
+        <li><strong>Claude 101</strong> &ndash; Anthropic</li>
+        <li><strong>MongoDB Overview: Core Concepts and Architecture</strong> &ndash; MongoDB</li>
+        <li><strong>Data Analysis with R Programming</strong> &ndash; Course Certification</li>
+        <li><strong>Certificate of Excellence</strong> &ndash; Daily Quiz (Management: September Series, Sep 2025)</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Education</h2>
+      <div class="item">
+        <div class="item-header">
+          <span class="item-title">Bachelor of Technology (B.Tech) - Computer Science and Engineering</span>
+          <span class="item-meta">Oct 2022 &ndash; Apr 2026</span>
+        </div>
+        <div class="item-org">Sri Venkatesa Perumal College of Engineering &amp; Technology (SVPCET)</div>
+      </div>
+    </section>
+  </div>
+</body>
+</html>

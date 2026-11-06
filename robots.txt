@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://somalarajuharshavardhanraju.github.io/Protfolio/sitemap.xml

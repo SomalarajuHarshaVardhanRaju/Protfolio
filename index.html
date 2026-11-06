@@ -1,280 +1,939 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="Portfolio of Somalaraju Harsha Vardhan Raju, AI and data engineer.">
-<title>Harsha Vardhan Raju</title>
-<meta name="claude:viewport-fit-sides" content="cover">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>
-/* Layout: a notebook-like single column. Hero pairs the intro with a live scatter-and-fit plot (raw data -> prediction), then sections run as labelled cells. */
-:root{
-  --bg:#EDF0F4; --surface:#F8F9FB; --fg:#0E1A2B; --muted:#53627A; --line:#CBD3DF;
-  --accent:#2349E8; --accent-fg:#FFFFFF; --accent-soft:#DCE3FB; --good:#12805C;
-  --font-display:"Bricolage Grotesque","Helvetica Neue",Arial,sans-serif;
-  --font-body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
-  --font-mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
-}
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
-  --bg:#0B1220; --surface:#121B2E; --fg:#E6EBF5; --muted:#92A0B8; --line:#26334D;
-  --accent:#86A2FF; --accent-fg:#0B1220; --accent-soft:#1B2A52; --good:#4CD6A3; color-scheme:dark}}
-:root[data-theme="dark"]{
-  --bg:#0B1220; --surface:#121B2E; --fg:#E6EBF5; --muted:#92A0B8; --line:#26334D;
-  --accent:#86A2FF; --accent-fg:#0B1220; --accent-soft:#1B2A52; --good:#4CD6A3; color-scheme:dark}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  
+  <!-- Primary Meta Tags -->
+  <title>Somalaraju Harsha Vardhan Raju | AI Engineer &amp; Generative AI Specialist</title>
+  <meta name="title" content="Somalaraju Harsha Vardhan Raju | AI Engineer &amp; Generative AI Specialist">
+  <meta name="description" content="AI Engineer specializing in Generative AI, Large Language Models, RAG architectures, AI Agents, and enterprise AI applications using Python, Azure OpenAI, LangChain, and LangGraph.">
+  <meta name="keywords" content="AI Engineer, Generative AI Engineer, Python AI Developer, RAG Engineer, LangChain Developer, AI Agent Developer, Azure OpenAI Engineer, Harsha Vardhan Raju">
+  <meta name="author" content="Somalaraju Harsha Vardhan Raju">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#070B14">
 
-*{box-sizing:border-box}
-body{background:var(--bg);color:var(--fg);font-family:var(--font-body);font-size:16px;line-height:1.6;
-  padding-block:0;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
-a{color:inherit}
-:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
-.wrap{max-width:1040px;margin:0 auto}
-h1,h2,h3{font-family:var(--font-display);text-wrap:balance;line-height:1.08;margin:0}
-.label{font-family:var(--font-mono);font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://somalarajuharshavardhanraju.github.io/Protfolio/">
 
-/* top bar */
-.bar{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-block:22px;flex-wrap:wrap}
-.mark{font-family:var(--font-display);font-weight:800;font-size:1.05rem;text-decoration:none}
-.nav{display:flex;gap:20px;flex-wrap:wrap}
-.nav a{font-size:.9rem;color:var(--muted);text-decoration:none}
-.nav a:hover{color:var(--fg)}
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://somalarajuharshavardhanraju.github.io/Protfolio/">
+  <meta property="og:title" content="Somalaraju Harsha Vardhan Raju | AI Engineer &amp; Generative AI Specialist">
+  <meta property="og:description" content="AI Engineer specializing in Generative AI, Large Language Models, RAG architectures, AI Agents, and enterprise AI applications.">
+  <meta property="og:image" content="assets/images/avatar.svg">
+  <meta property="og:site_name" content="Harsha Vardhan Raju Portfolio">
 
-/* hero */
-.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;padding-block:36px 56px}
-.hero>*{min-width:0}
-.status{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:.78rem;padding:6px 12px;border:1px solid var(--line);border-radius:999px;background:var(--surface)}
-.dot{width:8px;height:8px;border-radius:50%;background:var(--good)}
-h1{font-size:clamp(2.4rem,6.4vw,4.4rem);font-weight:800;letter-spacing:-.025em;margin-top:22px}
-h1 em{font-style:normal;color:var(--accent)}
-.role{font-size:1.15rem;margin:18px 0 0;max-width:34ch}
-.cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
-.btn{display:inline-block;padding:12px 20px;border-radius:6px;font-weight:600;font-size:.95rem;text-decoration:none;border:1px solid var(--fg)}
-.btn.primary{background:var(--accent);color:var(--accent-fg);border-color:var(--accent)}
-.btn.primary:hover{filter:brightness(1.08)}
-.btn.ghost:hover{background:var(--surface)}
+  <!-- Twitter Card -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://somalarajuharshavardhanraju.github.io/Protfolio/">
+  <meta property="twitter:title" content="Somalaraju Harsha Vardhan Raju | AI Engineer &amp; Generative AI Specialist">
+  <meta property="twitter:description" content="AI Engineer specializing in Generative AI, Large Language Models, RAG architectures, AI Agents, and enterprise AI applications.">
+  <meta property="twitter:image" content="assets/images/avatar.svg">
 
-/* plot */
-.plot{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px 16px 12px}
-.plot svg{display:block;width:100%;height:auto}
-.plot .ax{stroke:var(--line);stroke-width:1}
-.plot .grid{stroke:var(--line);stroke-width:1;stroke-dasharray:2 5;opacity:.7}
-.plot .pt{fill:var(--muted);opacity:.75}
-.plot .fit{stroke:var(--accent);stroke-width:2.5;fill:none;stroke-linecap:round}
-.plot .band{fill:var(--accent-soft);opacity:.7}
-.plot .t{font-family:var(--font-mono);font-size:10.5px;fill:var(--muted)}
-.plot .hit{fill:var(--accent)}
-.plot figcaption{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding-top:10px;font-family:var(--font-mono);font-size:.72rem;color:var(--muted)}
-@media (prefers-reduced-motion:no-preference){
-  .plot .fit{stroke-dasharray:520;stroke-dashoffset:0;animation:draw 1.6s ease-out .2s backwards}
-  @keyframes draw{from{stroke-dashoffset:520}to{stroke-dashoffset:0}}
-}
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
 
-/* sections */
-section{padding-block:56px;border-top:1px solid var(--line)}
-.sec{display:grid;grid-template-columns:200px 1fr;gap:32px}
-.sec>*{min-width:0}
-h2{font-size:clamp(1.6rem,3.6vw,2.2rem);font-weight:700;letter-spacing:-.015em}
-.sec .label{padding-top:8px}
-.about p{margin:0 0 16px;max-width:64ch}
-.about p:last-child{margin:0}
-.lead{font-family:var(--font-display);font-size:clamp(1.3rem,2.6vw,1.7rem);line-height:1.3;font-weight:500;max-width:30ch;margin:0 0 20px}
+  <!-- Preconnect to Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
-/* experience */
-.jobs{list-style:none;margin:0;padding:0;display:grid;gap:0}
-.job{display:grid;grid-template-columns:150px 1fr;gap:24px;padding-block:26px;border-top:1px solid var(--line)}
-.job:first-child{border-top:0;padding-top:0}
-.job>*{min-width:0}
-.when{font-family:var(--font-mono);font-size:.8rem;color:var(--muted);line-height:1.7}
-.job h3{font-size:1.3rem;font-weight:700}
-.org{margin:4px 0 12px;color:var(--accent);font-weight:600}
-.job ul{margin:0;padding-left:1.1em;display:grid;gap:8px;max-width:62ch}
-.job li::marker{color:var(--accent)}
+  <!-- Core Stylesheet -->
+  <link rel="stylesheet" href="assets/css/style.css">
 
-/* skills */
-.skills{display:grid;grid-template-columns:repeat(2,1fr);gap:28px 32px}
-.skills h3{font-size:1rem;font-weight:700;margin-bottom:12px;font-family:var(--font-mono);letter-spacing:.02em}
-.chips{display:flex;flex-wrap:wrap;gap:8px;padding:0;margin:0;list-style:none}
-.chips li{padding:5px 12px;border:1px solid var(--line);background:var(--surface);border-radius:999px;font-size:.88rem}
+  <style>
+    .skip-link {
+      position: absolute;
+      top: -100px;
+      left: 16px;
+      background: var(--accent-primary);
+      color: #FFFFFF;
+      padding: 10px 18px;
+      font-weight: 600;
+      border-radius: 6px;
+      z-index: 9999;
+      transition: top 0.2s ease;
+    }
+    .skip-link:focus {
+      top: 16px;
+    }
+  </style>
 
-/* credentials */
-.cred{list-style:none;margin:0;padding:0}
-.cred li{display:flex;justify-content:space-between;gap:20px;padding-block:14px;border-top:1px solid var(--line)}
-.cred li:first-child{border-top:0;padding-top:0}
-.cred span:last-child{font-family:var(--font-mono);font-size:.78rem;color:var(--muted);text-align:right;flex-shrink:0}
-.edu{margin-top:28px;padding:18px 20px;background:var(--surface);border:1px solid var(--line);border-radius:10px}
-.edu strong{font-family:var(--font-display);font-size:1.1rem}
-
-/* contact */
-.contact h2{font-size:clamp(1.9rem,4.6vw,3rem);max-width:18ch}
-.contact p{max-width:52ch;margin:18px 0 26px;color:var(--muted)}
-footer{padding-block:28px 40px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-family:var(--font-mono);font-size:.74rem;color:var(--muted)}
-
-@media (max-width:780px){
-  .hero{grid-template-columns:1fr;gap:32px;padding-top:12px}
-  .sec{grid-template-columns:1fr;gap:14px}
-  .job{grid-template-columns:1fr;gap:6px}
-  .skills{grid-template-columns:1fr}
-  .cred li{flex-direction:column;gap:4px}
-  .cred span:last-child{text-align:left}
-}
-</style>
-
+  <!-- Structured Data (JSON-LD) for SEO -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Somalaraju Harsha Vardhan Raju",
+    "jobTitle": "AI Engineer & Generative AI Specialist",
+    "description": "AI Engineer specializing in Generative AI, Large Language Models, RAG architectures, and AI Agents.",
+    "url": "https://somalarajuharshavardhanraju.github.io/Protfolio/",
+    "sameAs": [
+      "https://www.linkedin.com/in/somalaraju-harsha-vardhan-raju-9624a8261/",
+      "https://github.com/SomalarajuHarshaVardhanRaju",
+      "https://www.skills.google/public_profiles/1b0c8002-e364-4b79-a100-64e649437c3b"
+    ],
+    "alumniOf": {
+      "@type": "CollegeOrUniversity",
+      "name": "Sri Venkatesa Perumal College of Engineering & Technology (SVPCET)"
+    },
+    "knowsAbout": [
+      "Generative AI",
+      "Large Language Models",
+      "RAG (Retrieval-Augmented Generation)",
+      "LangChain",
+      "LangGraph",
+      "Python",
+      "Azure OpenAI",
+      "Vector Databases",
+      "FastAPI"
+    ]
+  }
+  </script>
 </head>
+
 <body>
-<div class="wrap">
-  <header class="bar">
-    <a class="mark" href="#top">Harsha Vardhan Raju</a>
-    <nav class="nav" aria-label="Sections">
-      <a href="#about">About</a><a href="#experience">Experience</a><a href="#skills">Skills</a><a href="#credentials">Credentials</a><a href="#contact">Contact</a>
-    </nav>
-  </header>
+  <!-- Accessibility Skip Link -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
 
-  <main id="top">
-    <div class="hero">
-      <div>
-        <span class="status"><span class="dot" aria-hidden="true"></span>Open to work &middot; India</span>
-        <h1>Somalaraju Harsha Vardhan Raju</h1>
-        <p class="role">AI &amp; data engineer. I turn raw data into <strong>working predictions</strong> with Python, PyTorch, NLP and RAG, then explain the results in SQL and Power BI.</p>
-        <div class="cta">
-          <a class="btn primary" href="https://www.linkedin.com/in/somalaraju-harsha-vardhan-raju-9624a8261/" target="_blank" rel="noopener">Message me on LinkedIn</a>
-          <a class="btn ghost" href="#experience">See experience</a>
+  <!-- Top Sticky Navigation Bar -->
+  <header class="site-header">
+    <div class="wrap">
+      <nav class="navbar" aria-label="Main Navigation">
+        <a class="brand" href="#hero">
+          <span class="brand-dot" aria-hidden="true"></span>
+          <span>Harsha Vardhan Raju</span>
+        </a>
+
+        <!-- Desktop Navigation Links -->
+        <ul class="nav-links">
+          <li><a href="#about">About</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#credentials">Certifications</a></li>
+          <li><a href="#education">Education</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+
+        <!-- Action Buttons: Theme Toggle & Mobile Menu -->
+        <div class="nav-actions">
+          <button id="theme-toggle" class="icon-btn" aria-label="Toggle light or dark theme" title="Toggle theme">
+            <!-- Sun Icon (shown in dark mode) -->
+            <svg id="theme-icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="5"></circle>
+              <line x1="12" y1="1" x2="12" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="23"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+              <line x1="1" y1="12" x2="3" y2="12"></line>
+              <line x1="21" y1="12" x2="23" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+            <!-- Moon Icon (shown in light mode) -->
+            <svg id="theme-icon-moon" style="display:none" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+          </button>
+
+          <button id="mobile-menu-btn" class="icon-btn mobile-menu-btn" aria-label="Toggle navigation menu" aria-expanded="false">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+          </button>
         </div>
-      </div>
-
-      <figure class="plot" style="margin:0">
-        <svg id="plot" viewBox="0 0 480 340" role="img" aria-label="Scatter plot of noisy data points with a fitted prediction line and confidence band"></svg>
-        <figcaption><span>raw data &rarr; fitted model</span><span>x: feature &nbsp; y: target</span></figcaption>
-      </figure>
+      </nav>
     </div>
 
-    <section id="about" class="sec">
-      <div class="label">About</div>
-      <div class="about">
-        <p class="lead">I build systems that turn raw data into working predictions.</p>
-        <p>I graduated in Computer Science (B.Tech, 2026) and have spent the past year on the applied ML stack: building and evaluating models in PyTorch and Python, preprocessing real-world datasets, and working on NLP and retrieval-augmented generation (RAG).</p>
-        <p>I also learned SQL and Power BI so I can explain what a model means to people who don't read code. As a GeeksforGeeks Campus Ambassador I led coding initiatives at my college.</p>
-        <p>I'm looking for an entry-level AI Engineer role where I can apply ML fundamentals to production problems. If your team works with NLP, RAG or predictive models, let's talk.</p>
+    <!-- Mobile Slide-Down Drawer -->
+    <div id="mobile-nav" class="mobile-nav" aria-label="Mobile Navigation">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#credentials">Certifications</a>
+      <a href="#education">Education</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </header>
+
+  <!-- Main Content Landmark -->
+  <main id="main-content">
+    
+    <!-- Hero Section -->
+    <section id="hero" class="hero-section">
+      <div class="wrap">
+        <div class="hero-grid">
+          <div>
+            <!-- Status Badge -->
+            <div class="status-badge">
+              <span class="pulse-dot" aria-hidden="true"></span>
+              <span>Available for AI Engineer &amp; GenAI Opportunities &middot; India</span>
+            </div>
+
+            <h1 class="hero-name">Somalaraju Harsha Vardhan Raju</h1>
+            <div class="hero-title">AI Engineer | Generative AI Engineer</div>
+
+            <div class="hero-headline">
+              "Building Intelligent AI Systems That Solve Real-World Problems."
+            </div>
+
+            <p class="hero-bio">
+              AI Engineer specializing in Generative AI, Large Language Models, RAG architectures, AI Agents, and enterprise AI applications. Passionate about building scalable, intelligent solutions using Python, Azure OpenAI, LangChain, LangGraph, and modern AI technologies.
+            </p>
+
+            <!-- Hero Action Buttons -->
+            <div class="hero-ctas">
+              <a href="#projects" class="btn primary">
+                <span>View Projects</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </a>
+
+              <a href="assets/docs/resume.html" target="_blank" rel="noopener" class="btn secondary">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                <span>Resume / CV</span>
+              </a>
+
+              <a href="#contact" class="btn ghost">Contact Me</a>
+            </div>
+
+            <!-- Social and Meta Links -->
+            <div class="hero-meta">
+              <a class="hero-meta-item" href="https://www.linkedin.com/in/somalaraju-harsha-vardhan-raju-9624a8261/" target="_blank" rel="noopener" title="LinkedIn Profile">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                <span>LinkedIn</span>
+              </a>
+
+              <a class="hero-meta-item" href="https://github.com/SomalarajuHarshaVardhanRaju" target="_blank" rel="noopener" title="GitHub Repository Profile">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                <span>GitHub</span>
+              </a>
+
+              <a class="hero-meta-item" href="mailto:harshavardhanraju2004@gmail.com" title="Direct Email">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                <span>harshavardhanraju2004@gmail.com</span>
+              </a>
+
+              <span class="hero-meta-item">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                <span>India</span>
+              </span>
+            </div>
+          </div>
+
+          <!-- Hero Visual: Interactive Live ML/Prediction Sandbox -->
+          <div class="hero-visual">
+            <div class="visual-header">
+              <span class="visual-title">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+                Live Model Estimator
+              </span>
+              <div class="hud-metrics">
+                <span class="hud-metric">R&sup2;: <strong id="metric-r2">0.94</strong></span>
+                <span class="hud-metric">MSE: <strong id="metric-mse">0.0038</strong></span>
+              </div>
+            </div>
+
+            <div class="plot-container">
+              <svg id="plot" viewBox="0 0 480 320" role="img" aria-label="Interactive scatter plot with regression model and 95% confidence intervals"></svg>
+            </div>
+
+            <div class="visual-controls">
+              <span>Interactive ML Simulator</span>
+              <div class="control-btns">
+                <button type="button" id="btn-regen-data" class="btn-micro" title="Reseed dataset">Resample</button>
+                <button type="button" id="btn-toggle-noise" class="btn-micro" title="Adjust noise level">Noise &plusmn;</button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
-    <section id="experience" class="sec">
-      <div>
-        <div class="label">Experience</div>
-      </div>
-      <ol class="jobs">
-        <li class="job">
-          <div class="when">Dec 2025 &ndash; Mar 2026<br>4 months<br>Bengaluru</div>
+    <!-- About Section -->
+    <section id="about">
+      <div class="wrap">
+        <div class="section-label">About Me</div>
+        <h2 class="section-title">Turning Raw Complexities into Production AI Systems</h2>
+        <p class="section-desc">
+          Bridging the gap between frontier Generative AI models, enterprise data platforms, and real-world business impact.
+        </p>
+
+        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 32px; font-size: 1.05rem; line-height: 1.7; color: var(--fg-secondary);">
           <div>
-            <h3>Artificial Intelligence Intern</h3>
-            <div class="org">SKILLRAACE</div>
-            <ul>
-              <li>Built and evaluated supervised and unsupervised ML models in Python across the full lifecycle, from raw data to trained model.</li>
-              <li>Engineered preprocessing pipelines (cleaning, transformation, feature engineering) to improve model input quality on real-world datasets.</li>
-              <li>Handled model selection, training, evaluation and iteration under senior technical guidance.</li>
-              <li>Turned model outputs into visual insights for internal technical review.</li>
+            <p style="margin-bottom: 16px;">
+              I graduated in <strong style="color:var(--fg-primary);">Computer Science and Engineering (B.Tech, 2026)</strong> from SVPCET and dedicated myself to the modern applied Generative AI and Large Language Model stack: designing RAG pipelines, structuring autonomous AI agents with LangGraph, and deploying high-throughput microservices.
+            </p>
+            <p>
+              My hands-on experience spans building real-world supervised/unsupervised ML models in Python, constructing end-to-end data pipelines in Microsoft Azure, and building vector search indexes using Azure AI Search, FAISS, and ChromaDB.
+            </p>
+          </div>
+          <div>
+            <p style="margin-bottom: 16px;">
+              Beyond core algorithm development, I believe AI systems must be observable, explainable, and production-hardened. I bridge technical AI implementations with enterprise stakeholders using clear metrics, structured SQL analytics, and transparent prompt architectures.
+            </p>
+            <p>
+              As a GeeksforGeeks Campus Ambassador, I led engineering initiatives, mentored students on data structures and algorithms, and cultivated collaborative developer problem-solving.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Technical Skills Section -->
+    <section id="skills">
+      <div class="wrap">
+        <div class="section-label">Core Competencies</div>
+        <h2 class="section-title">Technical Skills &amp; Stack</h2>
+        <p class="section-desc">
+          Proficiencies curated from production project implementations, enterprise internships, and certified expertise.
+        </p>
+
+        <div class="skills-grid">
+          <!-- Programming -->
+          <div class="skill-card">
+            <div class="skill-card-header">
+              <div class="skill-icon-wrapper" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+              </div>
+              <h3 class="skill-card-title">Programming</h3>
+            </div>
+            <ul class="skill-chips">
+              <li class="skill-chip">Python</li>
+              <li class="skill-chip">SQL</li>
+              <li class="skill-chip">JavaScript</li>
             </ul>
           </div>
-        </li>
-        <li class="job">
-          <div class="when">Jan 2026 &ndash; Jun 2026<br>6 months<br>Puttur, Andhra Pradesh</div>
-          <div>
-            <h3>Campus Ambassador</h3>
-            <div class="org">GeeksforGeeks</div>
-            <ul>
-              <li>Promoted coding culture and technical learning on campus, with a focus on DSA, competitive programming and problem solving.</li>
-              <li>Organized coding events, workshops and contests.</li>
-              <li>Pointed students to GeeksforGeeks resources for interview preparation and skill development.</li>
-              <li>Built a community of developers and learners.</li>
+
+          <!-- Generative AI & LLM -->
+          <div class="skill-card">
+            <div class="skill-card-header">
+              <div class="skill-icon-wrapper" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"></path></svg>
+              </div>
+              <h3 class="skill-card-title">Generative AI &amp; LLM</h3>
+            </div>
+            <ul class="skill-chips">
+              <li class="skill-chip">Generative AI</li>
+              <li class="skill-chip">LLMs</li>
+              <li class="skill-chip">Prompt Engineering</li>
+              <li class="skill-chip">RAG</li>
+              <li class="skill-chip">AI Agents</li>
+              <li class="skill-chip">MCP</li>
+              <li class="skill-chip">Agentic AI</li>
             </ul>
           </div>
-        </li>
-        <li class="job">
-          <div class="when">Aug 2024 &ndash; Oct 2024<br>3 months<br>Remote</div>
-          <div>
-            <h3>Python Developer</h3>
-            <div class="org">OctaNet Services Pvt Ltd.</div>
+
+          <!-- Frameworks -->
+          <div class="skill-card">
+            <div class="skill-card-header">
+              <div class="skill-icon-wrapper" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+              </div>
+              <h3 class="skill-card-title">Frameworks &amp; APIs</h3>
+            </div>
+            <ul class="skill-chips">
+              <li class="skill-chip">LangChain</li>
+              <li class="skill-chip">LangGraph</li>
+              <li class="skill-chip">CrewAI</li>
+              <li class="skill-chip">FastAPI</li>
+              <li class="skill-chip">REST APIs</li>
+            </ul>
           </div>
-        </li>
-      </ol>
-    </section>
 
-    <section id="skills" class="sec">
-      <div class="label">Skills</div>
-      <div class="skills">
-        <div>
-          <h3>Machine learning</h3>
-          <ul class="chips"><li>Python</li><li>PyTorch</li><li>NLP</li><li>RAG</li><li>Generative AI</li><li>Prompt Engineering</li><li>Claude AI</li></ul>
-        </div>
-        <div>
-          <h3>Data engineering</h3>
-          <ul class="chips"><li>Azure Cloud</li><li>Databricks</li><li>PySpark</li><li>Azure Data Factory</li><li>Azure Synapse</li></ul>
-        </div>
-        <div>
-          <h3>Analysis and reporting</h3>
-          <ul class="chips"><li>SQL</li><li>Power BI</li><li>Excel</li><li>R</li></ul>
-        </div>
-        <div>
-          <h3>Building and shipping</h3>
-          <ul class="chips"><li>REST APIs</li><li>FastAPI</li><li>Git</li><li>GitHub</li></ul>
+          <!-- Vector Databases & Search -->
+          <div class="skill-card">
+            <div class="skill-card-header">
+              <div class="skill-icon-wrapper" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+              </div>
+              <h3 class="skill-card-title">Vector Databases &amp; Search</h3>
+            </div>
+            <ul class="skill-chips">
+              <li class="skill-chip">FAISS</li>
+              <li class="skill-chip">ChromaDB</li>
+              <li class="skill-chip">Azure AI Search</li>
+            </ul>
+          </div>
+
+          <!-- Cloud & Data -->
+          <div class="skill-card">
+            <div class="skill-card-header">
+              <div class="skill-icon-wrapper" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"></path></svg>
+              </div>
+              <h3 class="skill-card-title">Cloud &amp; Data Engineering</h3>
+            </div>
+            <ul class="skill-chips">
+              <li class="skill-chip">Microsoft Azure</li>
+              <li class="skill-chip">Azure OpenAI</li>
+              <li class="skill-chip">Azure Data Factory</li>
+              <li class="skill-chip">Azure Databricks</li>
+              <li class="skill-chip">Microsoft Fabric</li>
+              <li class="skill-chip">PySpark</li>
+            </ul>
+          </div>
+
+          <!-- Machine Learning -->
+          <div class="skill-card">
+            <div class="skill-card-header">
+              <div class="skill-icon-wrapper" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path></svg>
+              </div>
+              <h3 class="skill-card-title">Machine Learning &amp; Analytics</h3>
+            </div>
+            <ul class="skill-chips">
+              <li class="skill-chip">Scikit-learn</li>
+              <li class="skill-chip">NLP</li>
+              <li class="skill-chip">Pandas</li>
+              <li class="skill-chip">NumPy</li>
+            </ul>
+          </div>
         </div>
       </div>
     </section>
 
-    <section id="credentials" class="sec">
-      <div class="label">Credentials</div>
-      <div>
-        <ul class="cred">
-          <li><span>Microsoft Certified: Fabric Data Engineer Associate</span><span>Microsoft</span></li>
-          <li><span>Claude 101</span><span>Anthropic</span></li>
-          <li><span>MongoDB Overview: Core Concepts and Architecture</span><span>MongoDB</span></li>
-          <li><span>Data Analysis with R Programming</span><span>Course</span></li>
-          <li><span>Certificate of Excellence, Daily Quiz (Management: September Series)</span><span>08 Sep 2025</span></li>
-        </ul>
-        <div class="edu">
-          <strong>B.Tech, Computer Science and Engineering</strong><br>
-          SVPCET &middot; Oct 2022 &ndash; Apr 2026
+    <!-- Professional Experience Section -->
+    <section id="experience">
+      <div class="wrap">
+        <div class="section-label">Career Journey</div>
+        <h2 class="section-title">Professional Experience</h2>
+        <p class="section-desc">
+          Hands-on track record across AI development, machine learning engineering, and campus leadership.
+        </p>
+
+        <div class="experience-timeline">
+          <!-- SKILLRAACE -->
+          <div class="exp-item">
+            <div class="exp-node" aria-hidden="true"></div>
+            <div class="exp-content">
+              <div class="exp-header">
+                <h3 class="exp-role">Artificial Intelligence Intern</h3>
+                <span class="exp-meta">Dec 2025 &ndash; Mar 2026 (4 months) &middot; Bengaluru, India</span>
+              </div>
+              <div class="exp-org">SKILLRAACE</div>
+              <ul class="exp-bullets">
+                <li>Built and evaluated supervised and unsupervised ML models in Python across the full data lifecycle, from raw feature extraction to production evaluation.</li>
+                <li>Engineered robust preprocessing pipelines (data cleaning, missing value imputation, and feature transformation) to significantly improve model input quality.</li>
+                <li>Handled model selection, training, evaluation, and performance tuning under senior technical guidance.</li>
+                <li>Developed Generative AI pipelines and document processing workflows utilizing vector embeddings and FastAPI endpoints.</li>
+                <li>Turned complex model outputs and evaluation metrics into actionable visual insights for internal technical reviews.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- GeeksforGeeks -->
+          <div class="exp-item">
+            <div class="exp-node" aria-hidden="true"></div>
+            <div class="exp-content">
+              <div class="exp-header">
+                <h3 class="exp-role">Campus Ambassador</h3>
+                <span class="exp-meta">Jan 2026 &ndash; Jun 2026 (6 months) &middot; Puttur, Andhra Pradesh</span>
+              </div>
+              <div class="exp-org">GeeksforGeeks</div>
+              <ul class="exp-bullets">
+                <li>Promoted coding culture and technical learning on campus, with a direct focus on Data Structures &amp; Algorithms (DSA) and competitive programming.</li>
+                <li>Organized technical workshops, coding contests, and collaborative study groups.</li>
+                <li>Mentored students in utilizing GeeksforGeeks resources for technical interview preparation.</li>
+                <li>Fostered an active campus developer community of problem solvers.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- OctaNet -->
+          <div class="exp-item">
+            <div class="exp-node" aria-hidden="true"></div>
+            <div class="exp-content">
+              <div class="exp-header">
+                <h3 class="exp-role">Python Developer</h3>
+                <span class="exp-meta">Aug 2024 &ndash; Oct 2024 (3 months) &middot; Remote</span>
+              </div>
+              <div class="exp-org">OctaNet Services Pvt Ltd.</div>
+              <ul class="exp-bullets">
+                <li>Developed backend Python scripts and modular automation tools for data processing tasks.</li>
+                <li>Created REST API endpoints and handled data serialization and JSON payloads.</li>
+                <li>Collaborated on code reviews, debugging, and software reliability improvements.</li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-    <section id="contact" class="contact">
-      <div class="label">Contact</div>
-      <h2 style="margin-top:14px">Building with NLP, RAG or predictive models?</h2>
-      <p>I'm looking for an entry-level AI Engineer role. The quickest way to reach me is a direct message on LinkedIn, where my Featured section has project work.</p>
-      <a class="btn primary" href="https://www.linkedin.com/in/somalaraju-harsha-vardhan-raju-9624a8261/" target="_blank" rel="noopener">Open my LinkedIn profile</a>
+    <!-- Featured Projects Section -->
+    <section id="projects">
+      <div class="wrap">
+        <div class="section-label">Portfolio Work</div>
+        <h2 class="section-title">Featured AI Projects</h2>
+        <p class="section-desc">
+          Enterprise AI architectures, RAG pipelines, autonomous agents, and production machine learning applications.
+        </p>
+
+        <!-- Category Filter Tabs -->
+        <div class="filter-bar" role="tablist" aria-label="Project Categories">
+          <button class="filter-btn active" data-filter="all" role="tab" aria-selected="true">All Projects (5)</button>
+          <button class="filter-btn" data-filter="rag" role="tab" aria-selected="false">GenAI &amp; RAG</button>
+          <button class="filter-btn" data-filter="agents" role="tab" aria-selected="false">AI Agents</button>
+          <button class="filter-btn" data-filter="ml" role="tab" aria-selected="false">Machine Learning</button>
+        </div>
+
+        <div class="projects-grid">
+          <!-- Project 1: Insurance RAG -->
+          <article class="project-card" data-category="rag enterprise">
+            <div>
+              <div class="project-card-header">
+                <span class="project-badge">RAG &amp; Enterprise AI</span>
+              </div>
+              <h3 class="project-title">Intelligent Insurance Knowledge &amp; Claims Assistant</h3>
+              <p class="project-desc">
+                Enterprise RAG-based AI solution automating insurance policy retrieval, coverage verification, and multi-modal claims processing with verifiable citation extraction.
+              </p>
+              <div class="project-tech">
+                <span class="tech-tag">Python</span>
+                <span class="tech-tag">Azure OpenAI</span>
+                <span class="tech-tag">LangChain</span>
+                <span class="tech-tag">Azure AI Search</span>
+                <span class="tech-tag">FAISS</span>
+                <span class="tech-tag">FastAPI</span>
+              </div>
+            </div>
+            <div class="project-actions">
+              <button class="btn primary btn-sm" data-project-trigger="insurance-rag">View Details</button>
+              <a href="https://github.com/SomalarajuHarshaVardhanRaju" target="_blank" rel="noopener" class="btn ghost btn-sm">GitHub &rarr;</a>
+            </div>
+          </article>
+
+          <!-- Project 2: Healthcare GenAI -->
+          <article class="project-card" data-category="rag healthcare">
+            <div>
+              <div class="project-card-header">
+                <span class="project-badge">Healthcare Generative AI</span>
+              </div>
+              <h3 class="project-title">Healthcare Clinical Decision Support Platform</h3>
+              <p class="project-desc">
+                Conversational clinical intelligence platform assisting medical practitioners in biomedical literature retrieval and automated discharge notes with strict hallucination guardrails.
+              </p>
+              <div class="project-tech">
+                <span class="tech-tag">Python</span>
+                <span class="tech-tag">LangChain</span>
+                <span class="tech-tag">GPT-4</span>
+                <span class="tech-tag">ChromaDB</span>
+                <span class="tech-tag">FastAPI</span>
+                <span class="tech-tag">Streamlit</span>
+              </div>
+            </div>
+            <div class="project-actions">
+              <button class="btn primary btn-sm" data-project-trigger="healthcare-genai">View Details</button>
+              <a href="https://github.com/SomalarajuHarshaVardhanRaju" target="_blank" rel="noopener" class="btn ghost btn-sm">GitHub &rarr;</a>
+            </div>
+          </article>
+
+          <!-- Project 3: FinSight -->
+          <article class="project-card" data-category="agents rag finance">
+            <div>
+              <div class="project-card-header">
+                <span class="project-badge">Financial AI &amp; LLMs</span>
+              </div>
+              <h3 class="project-title">FinSight &ndash; AI-Powered Financial Statement Analysis</h3>
+              <p class="project-desc">
+                Autonomous financial document intelligence engine analyzing 10-K SEC filings, earnings call transcripts, and balance sheet variance anomalies.
+              </p>
+              <div class="project-tech">
+                <span class="tech-tag">Python</span>
+                <span class="tech-tag">LangGraph</span>
+                <span class="tech-tag">Azure OpenAI</span>
+                <span class="tech-tag">LlamaParse</span>
+                <span class="tech-tag">Pandas</span>
+                <span class="tech-tag">PySpark</span>
+              </div>
+            </div>
+            <div class="project-actions">
+              <button class="btn primary btn-sm" data-project-trigger="finsight">View Details</button>
+              <a href="https://github.com/SomalarajuHarshaVardhanRaju" target="_blank" rel="noopener" class="btn ghost btn-sm">GitHub &rarr;</a>
+            </div>
+          </article>
+
+          <!-- Project 4: Agentic Workflow -->
+          <article class="project-card" data-category="agents">
+            <div>
+              <div class="project-card-header">
+                <span class="project-badge">AI Agents &amp; LangGraph</span>
+              </div>
+              <h3 class="project-title">Agentic Workflow Automator</h3>
+              <p class="project-desc">
+                Multi-agent state machine utilizing LangGraph and MCP (Model Context Protocol) for autonomous research, code synthesis, and multi-step tool execution.
+              </p>
+              <div class="project-tech">
+                <span class="tech-tag">LangGraph</span>
+                <span class="tech-tag">Python</span>
+                <span class="tech-tag">CrewAI</span>
+                <span class="tech-tag">MCP</span>
+                <span class="tech-tag">FastAPI</span>
+                <span class="tech-tag">OpenAI</span>
+              </div>
+            </div>
+            <div class="project-actions">
+              <button class="btn primary btn-sm" data-project-trigger="agentic-workflows">View Details</button>
+              <a href="https://github.com/SomalarajuHarshaVardhanRaju" target="_blank" rel="noopener" class="btn ghost btn-sm">GitHub &rarr;</a>
+            </div>
+          </article>
+
+          <!-- Project 5: Interactive ML Pipeline -->
+          <article class="project-card" data-category="ml">
+            <div>
+              <div class="project-card-header">
+                <span class="project-badge">Machine Learning &amp; MLOps</span>
+              </div>
+              <h3 class="project-title">Interactive Predictive Analytics &amp; ML Pipeline</h3>
+              <p class="project-desc">
+                End-to-end regression and classification framework featuring live parameter tuning, confidence interval bands, and client-side loss tracking.
+              </p>
+              <div class="project-tech">
+                <span class="tech-tag">Python</span>
+                <span class="tech-tag">Scikit-learn</span>
+                <span class="tech-tag">NumPy</span>
+                <span class="tech-tag">Pandas</span>
+                <span class="tech-tag">FastAPI</span>
+                <span class="tech-tag">SVG Simulation</span>
+              </div>
+            </div>
+            <div class="project-actions">
+              <button class="btn primary btn-sm" data-project-trigger="ml-pipeline">View Details</button>
+              <a href="https://github.com/SomalarajuHarshaVardhanRaju" target="_blank" rel="noopener" class="btn ghost btn-sm">GitHub &rarr;</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Certifications & Achievements Section -->
+    <section id="credentials">
+      <div class="wrap">
+        <div class="section-label">Verified Credentials</div>
+        <h2 class="section-title">Certifications &amp; Achievements</h2>
+        <p class="section-desc">
+          Professional certifications across Microsoft Azure, Generative AI, Google Cloud, and Database systems.
+        </p>
+
+        <div class="cert-grid">
+          <!-- Google Cloud Skills Boost (Featured) -->
+          <div class="cert-card" style="border-color: var(--accent-primary);">
+            <div>
+              <div class="cert-header">
+                <div class="cert-icon" style="background: rgba(16, 185, 129, 0.15); color: #10B981;">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+                </div>
+                <div>
+                  <h3 class="cert-name">Google Cloud Skills Boost</h3>
+                  <div class="cert-issuer">Google Cloud Platform &middot; GenAI Badges</div>
+                </div>
+              </div>
+              <p style="font-size: 0.9rem; color: var(--fg-secondary); margin-bottom: 16px;">
+                Verified learning paths &amp; badges in Generative AI, Large Language Models, Cloud Computing, and Infrastructure.
+              </p>
+            </div>
+            <div class="cert-footer">
+              <a href="https://www.skills.google/public_profiles/1b0c8002-e364-4b79-a100-64e649437c3b" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; gap:6px;">
+                <span>View Google Public Profile</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Microsoft Certified -->
+          <div class="cert-card">
+            <div>
+              <div class="cert-header">
+                <div class="cert-icon">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
+                </div>
+                <div>
+                  <h3 class="cert-name">Fabric Data Engineer Associate</h3>
+                  <div class="cert-issuer">Microsoft Certified</div>
+                </div>
+              </div>
+              <p style="font-size: 0.9rem; color: var(--fg-secondary); margin-bottom: 16px;">
+                Demonstrated skills in enterprise lakehouses, data pipelines, PySpark data engineering, and Fabric analytics.
+              </p>
+            </div>
+            <div class="cert-footer">
+              <span>Microsoft Verified</span>
+            </div>
+          </div>
+
+          <!-- Claude 101 -->
+          <div class="cert-card">
+            <div>
+              <div class="cert-header">
+                <div class="cert-icon">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                </div>
+                <div>
+                  <h3 class="cert-name">Claude 101</h3>
+                  <div class="cert-issuer">Anthropic</div>
+                </div>
+              </div>
+              <p style="font-size: 0.9rem; color: var(--fg-secondary); margin-bottom: 16px;">
+                Advanced prompt engineering, tool use, structured output steering, and context window optimizations.
+              </p>
+            </div>
+            <div class="cert-footer">
+              <span>Anthropic Credential</span>
+            </div>
+          </div>
+
+          <!-- MongoDB Overview -->
+          <div class="cert-card">
+            <div>
+              <div class="cert-header">
+                <div class="cert-icon">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg>
+                </div>
+                <div>
+                  <h3 class="cert-name">Core Concepts &amp; Architecture</h3>
+                  <div class="cert-issuer">MongoDB</div>
+                </div>
+              </div>
+              <p style="font-size: 0.9rem; color: var(--fg-secondary); margin-bottom: 16px;">
+                Document store design, indexing strategies, aggregation pipelines, and distributed replication topology.
+              </p>
+            </div>
+            <div class="cert-footer">
+              <span>MongoDB Verified</span>
+            </div>
+          </div>
+
+          <!-- Data Analysis with R -->
+          <div class="cert-card">
+            <div>
+              <div class="cert-header">
+                <div class="cert-icon">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+                </div>
+                <div>
+                  <h3 class="cert-name">Data Analysis with R Programming</h3>
+                  <div class="cert-issuer">Specialized Course</div>
+                </div>
+              </div>
+              <p style="font-size: 0.9rem; color: var(--fg-secondary); margin-bottom: 16px;">
+                Exploratory data analysis, hypothesis testing, statistical modeling, and data visualization.
+              </p>
+            </div>
+            <div class="cert-footer">
+              <span>Certified Credential</span>
+            </div>
+          </div>
+
+          <!-- Certificate of Excellence -->
+          <div class="cert-card">
+            <div>
+              <div class="cert-header">
+                <div class="cert-icon">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>
+                </div>
+                <div>
+                  <h3 class="cert-name">Certificate of Excellence</h3>
+                  <div class="cert-issuer">Management: September Series &middot; Sep 2025</div>
+                </div>
+              </div>
+              <p style="font-size: 0.9rem; color: var(--fg-secondary); margin-bottom: 16px;">
+                Awarded for outstanding performance in technical quiz and algorithmic problem solving series.
+              </p>
+            </div>
+            <div class="cert-footer">
+              <span>Award of Merit</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education">
+      <div class="wrap">
+        <div class="section-label">Academic Foundation</div>
+        <h2 class="section-title">Education</h2>
+        <p class="section-desc">
+          Rigorous computer science curriculum grounding machine learning and software engineering principles.
+        </p>
+
+        <div class="edu-card">
+          <div>
+            <h3 class="edu-degree">Bachelor of Technology (B.Tech) &ndash; Computer Science and Engineering</h3>
+            <div class="edu-college">Sri Venkatesa Perumal College of Engineering &amp; Technology (SVPCET)</div>
+            <p style="color: var(--fg-secondary); font-size: 0.95rem; max-width: 65ch; margin-top: 8px;">
+              Comprehensive curriculum covering Data Structures &amp; Algorithms, Database Management Systems, Object-Oriented Software Design, Artificial Intelligence, and Computer Networks. Active organizer of campus coding contests and developer initiatives.
+            </p>
+          </div>
+          <div class="edu-meta">
+            <span>Oct 2022 &ndash; Apr 2026</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+      <div class="wrap">
+        <div class="section-label">Let's Connect</div>
+        <h2 class="section-title">Get in Touch</h2>
+        <p class="section-desc">
+          Interested in discussing Generative AI, RAG architecture, LLM engineering, or an AI Engineer opportunity? Send a message or connect directly.
+        </p>
+
+        <div class="contact-grid">
+          <!-- Contact Info Card -->
+          <div class="contact-info-card">
+            <h3>Direct Contact</h3>
+            <p>
+              I am actively open to AI Engineer and Generative AI Engineer opportunities. Reach out via email, LinkedIn, or the message form.
+            </p>
+
+            <div class="contact-methods">
+              <div class="contact-method-item">
+                <div class="contact-method-icon">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                </div>
+                <div class="contact-method-text">
+                  <strong>Email</strong>
+                  <a href="mailto:harshavardhanraju2004@gmail.com">harshavardhanraju2004@gmail.com</a>
+                </div>
+              </div>
+
+              <div class="contact-method-item">
+                <div class="contact-method-icon">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                </div>
+                <div class="contact-method-text">
+                  <strong>LinkedIn</strong>
+                  <a href="https://www.linkedin.com/in/somalaraju-harsha-vardhan-raju-9624a8261/" target="_blank" rel="noopener">somalaraju-harsha-vardhan-raju-9624a8261</a>
+                </div>
+              </div>
+
+              <div class="contact-method-item">
+                <div class="contact-method-icon">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                </div>
+                <div class="contact-method-text">
+                  <strong>GitHub</strong>
+                  <a href="https://github.com/SomalarajuHarshaVardhanRaju" target="_blank" rel="noopener">SomalarajuHarshaVardhanRaju</a>
+                </div>
+              </div>
+
+              <div class="contact-method-item">
+                <div class="contact-method-icon">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                </div>
+                <div class="contact-method-text">
+                  <strong>Location</strong>
+                  <span>India</span>
+                </div>
+              </div>
+            </div>
+
+            <button type="button" id="copy-email-btn" class="btn secondary btn-sm" data-email="harshavardhanraju2004@gmail.com" style="width:100%;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+              <span>Copy Email to Clipboard</span>
+            </button>
+          </div>
+
+          <!-- Interactive Contact Form -->
+          <div class="contact-form-container">
+            <form id="contact-form" novalidate>
+              <div class="form-group">
+                <label for="contact-name" class="form-label">Full Name *</label>
+                <input type="text" id="contact-name" name="name" class="form-input" placeholder="e.g. Satya Nadella" required autocomplete="name">
+              </div>
+
+              <div class="form-group">
+                <label for="contact-email" class="form-label">Email Address *</label>
+                <input type="email" id="contact-email" name="email" class="form-input" placeholder="e.g. satya@microsoft.com" required autocomplete="email">
+              </div>
+
+              <div class="form-group">
+                <label for="contact-subject" class="form-label">Subject</label>
+                <input type="text" id="contact-subject" name="subject" class="form-input" placeholder="AI Engineer Role / Project Collaboration">
+              </div>
+
+              <div class="form-group">
+                <label for="contact-message" class="form-label">Message *</label>
+                <textarea id="contact-message" name="message" class="form-textarea" placeholder="Tell me about your team, problem space, or AI architecture..." required></textarea>
+              </div>
+
+              <button type="submit" id="form-submit-btn" class="btn primary" style="width: 100%;">
+                <span>Send Message</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+              </button>
+
+              <div id="form-status" class="form-status" aria-live="polite"></div>
+            </form>
+          </div>
+        </div>
+      </div>
     </section>
   </main>
 
-  <footer><span>Somalaraju Harsha Vardhan Raju</span><span>AI &amp; Data Engineer &middot; India</span></footer>
-</div>
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-content">
+        <div>
+          <strong style="color:var(--fg-primary);">Somalaraju Harsha Vardhan Raju</strong>
+          <div style="font-size: 0.82rem; margin-top: 4px;">AI Engineer | Generative AI Engineer &middot; India</div>
+        </div>
+        <div class="footer-links">
+          <a href="#hero">Back to Top</a>
+          <a href="https://www.linkedin.com/in/somalaraju-harsha-vardhan-raju-9624a8261/" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://github.com/SomalarajuHarshaVardhanRaju" target="_blank" rel="noopener">GitHub</a>
+          <a href="assets/docs/resume.html" target="_blank">Resume</a>
+        </div>
+      </div>
+    </div>
+  </footer>
 
-<script>
-(function(){
-  var W=480,H=340,L=40,R=16,T=16,B=36,pw=W-L-R,ph=H-T-B;
-  var s=7;function rnd(){s=(s*16807)%2147483647;return s/2147483647}
-  function X(v){return L+v*pw}function Y(v){return T+(1-v)*ph}
-  var out='';
-  for(var i=1;i<5;i++){out+='<line class="grid" x1="'+L+'" x2="'+(W-R)+'" y1="'+Y(i/5)+'" y2="'+Y(i/5)+'"/>'}
-  out+='<line class="ax" x1="'+L+'" x2="'+(W-R)+'" y1="'+Y(0)+'" y2="'+Y(0)+'"/><line class="ax" x1="'+L+'" x2="'+L+'" y1="'+Y(0)+'" y2="'+Y(1)+'"/>';
-  var a=0.18,b=0.66,sp=0.07;
-  var upper='',lower='';
-  for(var k=0;k<=20;k++){var x=k/20;upper+=(k?'L':'M')+X(x).toFixed(1)+' '+Y(a+b*x+sp*1.6).toFixed(1)+' '}
-  for(var k=20;k>=0;k--){var x=k/20;lower+='L'+X(x).toFixed(1)+' '+Y(a+b*x-sp*1.6).toFixed(1)+' '}
-  out+='<path class="band" d="'+upper+lower+'Z"/>';
-  for(var n=0;n<46;n++){
-    var x=0.03+rnd()*0.94, noise=(rnd()+rnd()+rnd()-1.5)*sp*2.2;
-    var y=Math.min(0.97,Math.max(0.03,a+b*x+noise));
-    out+='<circle class="pt" cx="'+X(x).toFixed(1)+'" cy="'+Y(y).toFixed(1)+'" r="3.2"/>';
-  }
-  out+='<line class="fit" x1="'+X(0)+'" y1="'+Y(a)+'" x2="'+X(1)+'" y2="'+Y(a+b)+'"/>';
-  out+='<circle class="hit" cx="'+X(1)+'" cy="'+Y(a+b)+'" r="5"/>';
-  out+='<text class="t" x="'+(X(1)-8)+'" y="'+(Y(a+b)-12)+'" text-anchor="end">prediction</text>';
-  out+='<text class="t" x="'+L+'" y="'+(H-10)+'">0</text><text class="t" x="'+(W-R)+'" y="'+(H-10)+'" text-anchor="end">feature value</text>';
-  document.getElementById('plot').innerHTML=out;
-})();
-</script>
+  <!-- Floating Back to Top Button -->
+  <button id="back-to-top" class="back-to-top" aria-label="Scroll back to top" title="Scroll to top">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"></polyline></svg>
+  </button>
 
+  <!-- Project Details Modal (Accessible Dialog) -->
+  <div id="project-modal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="modal-title" tabindex="-1">
+    <div class="modal-card">
+      <button id="modal-close" class="modal-close-btn" aria-label="Close project modal">&times;</button>
+      <div id="modal-category" class="modal-badge"></div>
+      <h3 id="modal-title" class="modal-title"></h3>
+      <p id="modal-headline" class="modal-headline"></p>
+
+      <div class="modal-section">
+        <div class="modal-section-title">Technical Stack</div>
+        <div id="modal-tech" class="modal-tech-list"></div>
+      </div>
+
+      <div class="modal-section">
+        <div class="modal-section-title">System Architecture &amp; Methodology</div>
+        <p id="modal-architecture" style="font-size: 0.95rem; color: var(--fg-secondary); line-height: 1.6;"></p>
+      </div>
+
+      <div class="modal-section">
+        <div class="modal-section-title">Key Engineering Highlights</div>
+        <ul id="modal-highlights" class="modal-highlights-list"></ul>
+      </div>
+
+      <div style="margin-top: 24px; padding-top: 18px; border-top: 1px solid var(--border-subtle); display:flex; gap: 12px; flex-wrap: wrap;">
+        <a id="modal-github" href="#" target="_blank" rel="noopener" class="btn primary btn-sm">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+          <span>View on GitHub</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="assets/js/visualizer.js"></script>
+  <script src="assets/js/main.js"></script>
 </body>
 </html>

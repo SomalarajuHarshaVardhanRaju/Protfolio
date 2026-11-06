@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" width="240" height="240">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1E293B"/>
+      <stop offset="50%" stop-color="#0F172A"/>
+      <stop offset="100%" stop-color="#0B1220"/>
+    </linearGradient>
+    <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38BDF8"/>
+      <stop offset="40%" stop-color="#818CF8"/>
+      <stop offset="100%" stop-color="#34D399"/>
+    </linearGradient>
+    <linearGradient id="coreGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6366F1"/>
+      <stop offset="100%" stop-color="#2563EB"/>
+    </linearGradient>
+    <filter id="aiGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+
+  <!-- Background Circle with border glow -->
+  <circle cx="120" cy="120" r="114" fill="url(#bgGrad)"/>
+  <circle cx="120" cy="120" r="114" fill="none" stroke="url(#ringGrad)" stroke-width="3" stroke-dasharray="8 4" opacity="0.8"/>
+  <circle cx="120" cy="120" r="102" fill="none" stroke="#334155" stroke-width="1" opacity="0.5"/>
+
+  <!-- AI Matrix & Neural Mesh in background -->
+  <g stroke="#38BDF8" stroke-width="1.2" opacity="0.35">
+    <line x1="60" y1="80" x2="120" y2="50"/>
+    <line x1="180" y1="80" x2="120" y2="50"/>
+    <line x1="60" y1="80" x2="80" y2="140"/>
+    <line x1="180" y1="80" x2="160" y2="140"/>
+    <line x1="80" y1="140" x2="120" y2="175"/>
+    <line x1="160" y1="140" x2="120" y2="175"/>
+    <line x1="120" y1="50" x2="120" y2="175" stroke-dasharray="3 3"/>
+  </g>
+
+  <!-- Neural Nodes -->
+  <circle cx="120" cy="50" r="4" fill="#38BDF8"/>
+  <circle cx="60" cy="80" r="4" fill="#818CF8"/>
+  <circle cx="180" cy="80" r="4" fill="#818CF8"/>
+  <circle cx="80" cy="140" r="4" fill="#34D399"/>
+  <circle cx="160" cy="140" r="4" fill="#34D399"/>
+  <circle cx="120" cy="175" r="4.5" fill="#38BDF8"/>
+
+  <!-- Central Monogram Avatar Card -->
+  <circle cx="120" cy="115" r="48" fill="url(#coreGrad)" filter="url(#aiGlow)"/>
+  <circle cx="120" cy="115" r="46" fill="none" stroke="#FFFFFF" stroke-width="1.5" opacity="0.3"/>
+  <text x="120" y="125" text-anchor="middle" font-family="'Bricolage Grotesque', 'Segoe UI', sans-serif" font-weight="800" font-size="34" fill="#FFFFFF" letter-spacing="-1">HV</text>
+
+  <!-- Floating AI Status Badge -->
+  <rect x="70" y="182" width="100" height="24" rx="12" fill="#0F172A" stroke="#34D399" stroke-width="1.5"/>
+  <circle cx="84" cy="194" r="3.5" fill="#34D399"/>
+  <text x="123" y="198" text-anchor="middle" font-family="'IBM Plex Mono', monospace" font-size="9" font-weight="600" fill="#E2E8F0" letter-spacing="0.5">AI ENGINEER</text>
+</svg>
